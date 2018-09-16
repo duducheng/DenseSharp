@@ -3,10 +3,11 @@
 
 DenseSharp Networks are 3D DenseNet-based deep neural networks with multi-task learning the nodule classification labels and segmentations. 
 
-# Code Structures
-* [mylib](mylib/):
-* [training.py](training.py):
-* [preprocessing.py](preprocessing.py):
+# Code Structure
+* [`mylib/`](mylib/):
+    * ...
+* [`training.py`](training.py):
+* [`preprocessing.py`](preprocessing.py):
 
 # Requirements
 * TensorFlow==1.4.0
