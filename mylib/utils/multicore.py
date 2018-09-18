@@ -42,3 +42,28 @@ class TaskRunner:
         if not hasattr(self, "results_"):
             raise AttributeError
         return [r[1] for r in self.results_ if r[0] == "error"]
+
+
+if __name__ == '__main__':
+    print("The following provides the usage code of the multi-core `TaskRunner`.")
+
+
+    def task(x):
+        print(x)
+        time.sleep(x / 5)
+        return x + 1
+
+
+    now = time.time()
+    for i in range(10):
+        task(i)
+    print("Without multi-processing:", time.time() - now)
+
+    now = time.time()
+    runner = TaskRunner(task=task,
+                        arg_list=range(10),
+                        max_workers=5)
+    runner.run()
+    print("Results:", runner.results_)
+    print("Errors:", runner.errors_)
+    print("With multi-processing:", time.time() - now)

@@ -12,7 +12,15 @@ LABEL = ['AAH', 'AIS', 'MIA', 'IAC']
 
 
 class ClfDataset(Sequence):
-    def __init__(self, crop_size=32, move=3, subset=[0, 1, 2, 3], define_label=lambda l: l):
+    def __init__(self, crop_size=32, move=3, subset=[0, 1, 2, 3],
+                 define_label=lambda l: [l[0] + l[1], l[2], l[3]]):
+        '''
+
+        :param crop_size: the input size
+        :param move: the random move
+        :param subset: choose which subset to use
+        :param define_label: how to define the label. default: for 3-output classification one hot encoding.
+        '''
         index = []
         for sset in subset:
             index += list(INFO[INFO['subset'] == sset].index)
@@ -25,8 +33,6 @@ class ClfDataset(Sequence):
         name = INFO.loc[self.index[item], 'name']
         with np.load(PATH.get_nodule(name)) as npz:
             voxel = self.transform(npz['voxel'])
-            # voxel = self.transform(npz['voxel']) / 255.
-            # voxel = self.transform(npz['voxel'] * (npz['seg'] * 0.8 + 0.2))
         label = self.label[item]
         return voxel, self.define_label(label)
 
@@ -76,26 +82,6 @@ class ClfDataset(Sequence):
         return np.array(xs), np.array(ys)
 
 
-class BinaryDataset(ClfDataset):
-    def __getitem__(self, item):
-        name = INFO.loc[self.index[item], 'name']
-        with np.load(PATH.get_nodule(name)) as npz:
-            voxel = self.transform(npz['voxel'])
-            # voxel = self.transform(npz['voxel'] * (npz['seg'] * 0.8 + 0.2))
-        label = self.label[item]
-        return voxel, (label[2] + label[3])
-
-
-class BinaryNBGDataset(ClfDataset):
-    def __getitem__(self, item):
-        name = INFO.loc[self.index[item], 'name']
-        with np.load(PATH.get_nodule(name)) as npz:
-            voxel = self.transform(npz['voxel'] * npz['seg'])
-            # voxel = self.transform(npz['voxel'] * (npz['seg'] * 0.8 + 0.2))
-        label = self.label[item]
-        return voxel, (label[2] + label[3])
-
-
 class ClfSegDataset(ClfDataset):
     def __getitem__(self, item):
         name = INFO.loc[self.index[item], 'name']
@@ -117,28 +103,13 @@ class ClfSegDataset(ClfDataset):
         return np.array(xs), {"clf": np.array(ys), "seg": np.array(segs)}
 
 
-class BinarySegDataset(ClfDataset):
-    def __getitem__(self, item):
-        name = INFO.loc[self.index[item], 'name']
-        with np.load(PATH.get_nodule(name)) as npz:
-            voxel, seg = self.transform(npz['voxel'], npz['seg'])
-            # voxel = self.transform(npz['voxel'] * (npz['seg'] * 0.8 + 0.2))
-        label = self.label[item]
-        return voxel, ((label[2] + label[3]), seg)
-
-    @staticmethod
-    def _collate_fn(data):
-        xs = []
-        ys = []
-        segs = []
-        for x, y in data:
-            xs.append(x)
-            ys.append(y[0])
-            segs.append(y[1])
-        return np.array(xs), {"clf": np.array(ys), "seg": np.array(segs)}
-
-
 class Transform:
+    '''The online data augmentation, including:
+    1) random move the center by `move`
+    2) rotation 90 degrees increments
+    3) reflection in any axis
+    '''
+
     def __init__(self, size, move):
         self.size = _triple(size)
         self.move = move

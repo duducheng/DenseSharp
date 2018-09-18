@@ -50,10 +50,10 @@ def plot_voxel_enhance(arr, arr_mask=None, figsize=10, alpha=0.1):  # zyx
             target_y = row * img_height
             target_x = col * img_width
             res_img[target_y:target_y + img_height,
-                    target_x:target_x + img_width] = arr[row * cols + col]
+            target_x:target_x + img_width] = arr[row * cols + col]
             if arr_mask is not None:
                 res_mask_img[target_y:target_y + img_height,
-                             target_x:target_x + img_width] = arr_mask[row * cols + col]
+                target_x:target_x + img_width] = arr_mask[row * cols + col]
     plt.imshow(res_img, plt.cm.gray)
     if arr_mask is not None:
         plt.imshow(res_mask_img, alpha=alpha)
@@ -95,7 +95,7 @@ def crop_at_zyx_with_dhw(voxel, zyx, dhw, fill_with):
             high = shape[i]
         crop_pos.append([int(low), int(high)])
     cropped = voxel[crop_pos[0][0]:crop_pos[0][1], crop_pos[1]
-                    [0]:crop_pos[1][1], crop_pos[2][0]:crop_pos[2][1]]
+                                                   [0]:crop_pos[1][1], crop_pos[2][0]:crop_pos[2][1]]
     if np.sum(padding) > 0:
         cropped = np.lib.pad(cropped, padding, 'constant',
                              constant_values=fill_with)
@@ -113,8 +113,7 @@ def resize(voxel, spacing, new_spacing=[1., 1., 1.]):
     resize_factor = []
     for sp, nsp in zip(spacing, new_spacing):
         resize_factor.append(float(sp) / nsp)
-    resized = scipy.ndimage.interpolation.zoom(
-        voxel, resize_factor, mode='nearest')
+    resized = scipy.ndimage.interpolation.zoom(voxel, resize_factor, mode='nearest')
     for i, (sp, shape, rshape) in enumerate(zip(spacing, voxel.shape, resized.shape)):
         new_spacing[i] = float(sp) * shape / rshape
     return resized, new_spacing
@@ -150,8 +149,8 @@ def crop(array, zyx, dhw):
     z, y, x = zyx
     d, h, w = dhw
     cropped = array[z - d // 2:z + d // 2,
-                    y - h // 2:y + h // 2,
-                    x - w // 2:x + w // 2]
+              y - h // 2:y + h // 2,
+              x - w // 2:x + w // 2]
     return cropped
 
 

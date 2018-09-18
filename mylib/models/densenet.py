@@ -3,21 +3,21 @@ from keras.layers import (Conv3D, BatchNormalization, AveragePooling3D, concaten
 from keras.regularizers import l2 as l2_penalty
 from keras.models import Model
 
-from .metrics import invasion_acc, invasion_precision, invasion_recall, invasion_fmeasure
+from mylib.models.metrics import invasion_acc, invasion_precision, invasion_recall, invasion_fmeasure
 
 PARAMS = {
-    'activation': lambda: Activation('relu'),
-    'bn_scale': True,
-    'weight_decay': 0.,
-    'kernel_initializer': 'he_uniform',
-    'first_scale': lambda x: x / 128. - 1.,
-    'dhw': [32, 32, 32],
-    'k': 16,
-    'bottleneck': 4,
-    'compression': 2,
-    'first_layer': 32,
-    'down_structure': [4, 4, 4],
-    'output_size': 4
+    'activation': lambda: Activation('relu'),  # the activation functions
+    'bn_scale': True,  # whether to use the scale function in BN
+    'weight_decay': 0.,  # l2 weight decay
+    'kernel_initializer': 'he_uniform',  # initialization
+    'first_scale': lambda x: x / 128. - 1.,  # the first pre-processing function
+    'dhw': [32, 32, 32],  # the input shape
+    'k': 16,  # the `growth rate` in DenseNet
+    'bottleneck': 4,  # the `bottleneck` in DenseNet
+    'compression': 2,  # the `compression` in DenseNet
+    'first_layer': 32,  # the channel of the first layer
+    'down_structure': [4, 4, 4],  # the down-sample structure
+    'output_size': 3  # the output number of the classification head
 }
 
 
@@ -129,6 +129,4 @@ def get_compiled(loss='categorical_crossentropy', optimizer='adam',
 
 
 if __name__ == '__main__':
-    # model = get_model()
-    # model.summary()
     model = get_compiled()
