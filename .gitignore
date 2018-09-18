@@ -1,3 +1,5 @@
+tmp*
+ENVIRON
 workspace/
 .idea/
 

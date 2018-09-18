@@ -1,12 +1,12 @@
 from collections.abc import Sequence
 import random
+import os
 
 import numpy as np
-from .path_manager import PATH
-from .misc import parse_info
-from ..utils.misc import rotation, reflection, crop, random_center, _triple
+from mylib.dataloader.path_manager import PATH
+from mylib.utils.misc import rotation, reflection, crop, random_center, _triple
 
-INFO = parse_info()
+INFO = PATH.info
 
 LABEL = ['AAH', 'AIS', 'MIA', 'IAC']
 
@@ -14,7 +14,7 @@ LABEL = ['AAH', 'AIS', 'MIA', 'IAC']
 class ClfDataset(Sequence):
     def __init__(self, crop_size=32, move=3, subset=[0, 1, 2, 3],
                  define_label=lambda l: [l[0] + l[1], l[2], l[3]]):
-        '''
+        '''The classification-only dataset.
 
         :param crop_size: the input size
         :param move: the random move
@@ -31,7 +31,7 @@ class ClfDataset(Sequence):
 
     def __getitem__(self, item):
         name = INFO.loc[self.index[item], 'name']
-        with np.load(PATH.get_nodule(name)) as npz:
+        with np.load(os.path.join(PATH.nodule_path, '%s.npz' % name)) as npz:
             voxel = self.transform(npz['voxel'])
         label = self.label[item]
         return voxel, self.define_label(label)
@@ -83,9 +83,11 @@ class ClfDataset(Sequence):
 
 
 class ClfSegDataset(ClfDataset):
+    '''Classification and segmentation dataset.'''
+
     def __getitem__(self, item):
         name = INFO.loc[self.index[item], 'name']
-        with np.load(PATH.get_nodule(name)) as npz:
+        with np.load(os.path.join(PATH.nodule_path, '%s.npz' % name)) as npz:
             voxel, seg = self.transform(npz['voxel'], npz['seg'])
             # voxel = self.transform(npz['voxel'] * (npz['seg'] * 0.8 + 0.2))
         label = self.label[item]

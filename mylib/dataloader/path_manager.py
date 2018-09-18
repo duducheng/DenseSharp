@@ -3,8 +3,8 @@ import json
 
 
 class PathManager:
-    def __init__(self, environ=None):
-        self.environ = environ
+    def __init__(self, cfg_path=None):
+        self.environ = parse_environ(cfg_path)
 
     @property
     def base(self):
