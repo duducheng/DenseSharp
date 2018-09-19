@@ -11,6 +11,15 @@ DenseSharp Networks are 3D DenseNet-based deep neural networks with multi-task l
 * [`explore.ipynb`](explore.ipynb): plots and basic views of networks.
 * [`training.py`](training.py): #TODO
 
+# 3D Nodule Mesh Plots
+The 3D mesh plots are used for illustration interactively.
+![3d nodule mesh pltos](3dmesh.gif)
+
+The helper functions are provided in [`mylib/utils/plot3d.py`](mylib/utils/plot3d.py).
+See [`explore.ipynb`](explore.ipynb) for the demo code. 
+Control the mesh step by setting `step_size`.
+ 
+
 # Requirements
 * Python 3 (Anaconda 3.6.3 specifically)
 * TensorFlow==1.4.0
