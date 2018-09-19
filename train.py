@@ -64,7 +64,7 @@ def main(batch_sizes, crop_size, random_move, learning_rate,
 
 
 if __name__ == '__main__':
-    main(batch_sizes=[1, 3, 4, 4],
+    main(batch_sizes=[3, 5, 8, 8],
          crop_size=[32, 32, 32],
          random_move=3,
          learning_rate=1.e-4,

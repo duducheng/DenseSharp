@@ -9,7 +9,7 @@ DenseSharp Networks are 3D DenseNet-based deep neural networks with multi-task l
     * [`models/`](mylib/models): 3D *DenseSharp* and *DenseNet* models togethor with the losses and metrics.
     * [`utils/`](mylib/utils): plot and multi-processing utils.
 * [`explore.ipynb`](explore.ipynb): plots and basic views of networks.
-* [`training.py`](training.py): the training script.
+* [`train.py`](train.py): the training script.
 
 # Requirements
 * Python 3 (Anaconda 3.6.3 specifically)
@@ -24,7 +24,7 @@ Unfortunately, our dataset is not available publicly considering the patients'
 privacy, and restrictions apply to the use. 
 However, you can still run the code using the sample dataset 
 ([download](https://drive.google.com/open?id=1c-suZobPIH-DSE99zspPb098jEiDqRGa)).
-Please note, the sample dataset is just for demonstrating the functionality.
+Please note, the sample dataset is just for demonstrating the code functionality.
 
 Unzip the sample dataset, then modify the `"DATASET"` field in `mylib/dataloader/ENVIRON`.
 
