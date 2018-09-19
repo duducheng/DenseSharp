@@ -29,22 +29,22 @@ Higher versions should also work (perhaps with minor modifications).
 # Data samples
 Unfortunately, our dataset is not available publicly considering the patients' 
 privacy, and restrictions apply to the use. 
+
 However, you can still run the code using the sample dataset 
 ([download](https://drive.google.com/open?id=1c-suZobPIH-DSE99zspPb098jEiDqRGa)).
 Please note, the sample dataset is just demonstrating the code functionality.
-
 Unzip the sample dataset, then modify the `"DATASET"` field in 
 [`mylib/dataloader/ENVIRON`](mylib/dataloader/ENVIRON).
 
-The *DenseSharp* Networks are multi-task learning 
-networks for classification and segmentation. It's generally designed for 3D data,
-with these two task labels. You can run the code on your own data if you process
-your dataset following the sample data format.
+The *DenseSharp* Networks are generally designed for 3D data,
+with the classification and segmentation labels. You can run the code
+on your own data if your dataset are processed following the sample data format.
 
-Each samples are nodule-centered patches in 80mm x 80mm x 80mm, which is larger than the
-actual input size to ease the data augmentation implementation. Each `npz` file contains 
-a `voxel` (pre-processed CT scans, as in the paper) and a `seg` (the corresponding manual
-segmentation mask by the radiologists). The `csv` file contains the classification info. 
+Each sample (e.g., `demo1.npz`) is a nodule-centered patch in 80mm x 80mm x 80mm, 
+which is larger than the actual input size to ease the data augmentation implementation.
+Each `npz` file contains a `voxel` (pre-processed CT scans, as in the paper) and a `seg`
+(the corresponding manual segmentation mask by the radiologists). The `csv` file contains
+the classification information. 
 
 # 3D Nodule Mesh Plots
 The 3D mesh plots are used for illustration interactively. See the following example:
