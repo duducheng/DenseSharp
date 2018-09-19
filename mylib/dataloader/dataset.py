@@ -39,39 +39,6 @@ class ClfDataset(Sequence):
     def __len__(self):
         return len(self.index)
 
-    @classmethod
-    def get_loader(cls, batch_size, *args, **kwargs):
-        dataset = cls(*args, **kwargs)
-        total_size = len(dataset)
-        print('Size', total_size)
-        index_generator = shuffle_iterator(range(total_size))
-        while True:
-            data = []
-            for _ in range(batch_size):
-                idx = next(index_generator)
-                data.append(dataset[idx])
-            yield dataset._collate_fn(data)
-
-    @classmethod
-    def get_balanced_loader(cls, batch_sizes, *args, **kwargs):
-        assert len(batch_sizes) == len(LABEL)
-        dataset = cls(*args, **kwargs)
-        total_size = len(dataset)
-        print('Size', total_size)
-        index_generators = []
-        for l_idx in range(len(batch_sizes)):
-            # this must be list, or `l_idx` will not be eval
-            iterator = [i for i in range(total_size) if dataset.label[i, l_idx]]
-            index_generators.append(shuffle_iterator(iterator))
-        while True:
-            data = []
-            for i, batch_size in enumerate(batch_sizes):
-                generator = index_generators[i]
-                for _ in range(batch_size):
-                    idx = next(generator)
-                    data.append(dataset[idx])
-            yield dataset._collate_fn(data)
-
     @staticmethod
     def _collate_fn(data):
         xs = []
@@ -103,6 +70,37 @@ class ClfSegDataset(ClfDataset):
             ys.append(y[0])
             segs.append(y[1])
         return np.array(xs), {"clf": np.array(ys), "seg": np.array(segs)}
+
+
+def get_loader(dataset, batch_size):
+    total_size = len(dataset)
+    print('Size', total_size)
+    index_generator = shuffle_iterator(range(total_size))
+    while True:
+        data = []
+        for _ in range(batch_size):
+            idx = next(index_generator)
+            data.append(dataset[idx])
+        yield dataset._collate_fn(data)
+
+
+def get_balanced_loader(dataset, batch_sizes):
+    assert len(batch_sizes) == len(LABEL)
+    total_size = len(dataset)
+    print('Size', total_size)
+    index_generators = []
+    for l_idx in range(len(batch_sizes)):
+        # this must be list, or `l_idx` will not be eval
+        iterator = [i for i in range(total_size) if dataset.label[i, l_idx]]
+        index_generators.append(shuffle_iterator(iterator))
+    while True:
+        data = []
+        for i, batch_size in enumerate(batch_sizes):
+            generator = index_generators[i]
+            for _ in range(batch_size):
+                idx = next(generator)
+                data.append(dataset[idx])
+        yield dataset._collate_fn(data)
 
 
 class Transform:
