@@ -31,9 +31,10 @@ Unfortunately, our dataset is not available publicly considering the patients'
 privacy, and restrictions apply to the use. 
 However, you can still run the code using the sample dataset 
 ([download](https://drive.google.com/open?id=1c-suZobPIH-DSE99zspPb098jEiDqRGa)).
-Please note, the sample dataset is just for demonstrating the code functionality.
+Please note, the sample dataset is just demonstrating the code functionality.
 
-Unzip the sample dataset, then modify the `"DATASET"` field in `mylib/dataloader/ENVIRON`.
+Unzip the sample dataset, then modify the `"DATASET"` field in 
+[`mylib/dataloader/ENVIRON`](mylib/dataloader/ENVIRON).
 
 The *DenseSharp* Networks are multi-task learning 
 networks for classification and segmentation. It's generally designed for 3D data,
