@@ -9,24 +9,15 @@ DenseSharp Networks are 3D DenseNet-based deep neural networks with multi-task l
     * [`models/`](mylib/models): 3D *DenseSharp* and *DenseNet* models togethor with the losses and metrics.
     * [`utils/`](mylib/utils): plot and multi-processing utils.
 * [`explore.ipynb`](explore.ipynb): plots and basic views of networks.
-* [`training.py`](training.py): #TODO
-
-# 3D Nodule Mesh Plots
-The 3D mesh plots are used for illustration interactively.
-![3d nodule mesh pltos](3dmesh.gif)
-
-The helper functions are provided in [`mylib/utils/plot3d.py`](mylib/utils/plot3d.py).
-See [`explore.ipynb`](explore.ipynb) for the demo code. 
-Control the mesh step by setting `step_size`.
- 
+* [`training.py`](training.py): #TODO 
 
 # Requirements
 * Python 3 (Anaconda 3.6.3 specifically)
 * TensorFlow==1.4.0
 * Keras==2.1.5
-* To plot the 3D mesh, you may also need [`plotly`](https://plot.ly/python/) installed.
-Higher versions should also work (perhaps with minor modifications).
+* To plot the 3D mesh, you may also need [`plotly`](https://plot.ly/python/) installed. 
 
+Higher versions should also work (perhaps with minor modifications).
 
 # Data samples
 Unfortunately, our dataset is not available publicly considering the patients' 
@@ -41,6 +32,14 @@ The *DenseSharp* Networks are parameter-efficient multi-task learning
 networks for classification and segmentation. It's generally designed for 3D data,
 with these two task labels. You can run the code on your own data if you process
 your dataset following the sample data format.
+
+# 3D Nodule Mesh Plots
+The 3D mesh plots are used for illustration interactively. See the following example:
+![3d nodule mesh pltos](3dmesh.gif)
+
+The helper functions are provided in [`mylib/utils/plot3d.py`](mylib/utils/plot3d.py).
+See [`explore.ipynb`](explore.ipynb) for the demo code. 
+Control the mesh step by setting `step_size`.
 
 # LICENSE
 The code is under Apache-2.0 License.
