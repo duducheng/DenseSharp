@@ -1,12 +1,7 @@
-# import os
-# os.environ['CUDA_VISIBLE_DEVICES'] = '1'
-# CUDA_VISIBLE_DEVICES=1
-import _init_paths
-
 from mylib.models.misc import set_gpu_usage
 set_gpu_usage()
 
-from mylib.dataloader.dataset import ClfDataset, ClfMixup
+from mylib.dataloader.dataset import ClfSegDataset
 from mylib.models import densenet
 from utils import TrainingBase
 
@@ -45,11 +40,6 @@ def main(**kwargs):
         train_dataset = ClfDataset(crop_size=cfg.dhw,
                                    subset=cfg.train_subset,
                                    move=cfg.random_move)
-    else:
-        train_dataset = ClfMixup(crop_size=cfg.dhw,
-                                 subset=cfg.train_subset,
-                                 move=cfg.random_move,
-                                 alpha=cfg.alpha)
     loader = train_dataset.turn_to_resampling_loader(cfg.n_pos, cfg.n_neg)
 
     datasets = dict(train=train_dataset)
