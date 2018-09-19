@@ -1,7 +1,14 @@
-# DenseSharp (WIP)
-3D Deep Learning from CT Scans Predicts Tumor Invasiveness of Subcentimeter Pulmonary Adenocarcinomas
+# DenseSharp Networks for multi-task learning classification and segmentation
+*DenseSharp* Networks are very parameter-efficient 3D DenseNet-based deep neural networks with multi-task
+learning the nodule classification labels and segmentation masks. Segmentation (top-down path) 
+learning elegantly guides classification (bottom-top path) to learn better. In this study, our networks learn to 
+classify early-stage lung cancer from CT scans on pathological level. The deep learning models outperforms the 
+radiologists (2 senior and 2 junior) in our observer study, which indicates the potentials to facilitate
+precision medicine.
 
-DenseSharp Networks are 3D DenseNet-based deep neural networks with multi-task learning the nodule classification labels and segmentations. 
+More details, refer to our paper 
+*3D Deep Learning from CT Scans Predicts Tumor Invasiveness of Subcentimeter Pulmonary Adenocarcinomas*.
+
 
 # Code Structure
 * [`mylib/`](mylib/):
@@ -28,10 +35,15 @@ Please note, the sample dataset is just for demonstrating the code functionality
 
 Unzip the sample dataset, then modify the `"DATASET"` field in `mylib/dataloader/ENVIRON`.
 
-The *DenseSharp* Networks are parameter-efficient multi-task learning 
+The *DenseSharp* Networks are multi-task learning 
 networks for classification and segmentation. It's generally designed for 3D data,
 with these two task labels. You can run the code on your own data if you process
 your dataset following the sample data format.
+
+Each samples are nodule-centered patches in 80mm x 80mm x 80mm, which is larger than the
+actual input size to ease the data augmentation implementation. Each `npz` file contains 
+a `voxel` (pre-processed CT scans, as in the paper) and a `seg` (the corresponding manual
+segmentation mask by the radiologists). The `csv` file contains the classification info. 
 
 # 3D Nodule Mesh Plots
 The 3D mesh plots are used for illustration interactively. See the following example:
