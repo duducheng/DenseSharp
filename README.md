@@ -6,6 +6,8 @@ classify early-stage lung cancer from **CT** scans on **pathological** level. Th
 radiologists (2 senior and 2 junior) in our observer study, which indicates the potentials to facilitate
 precision medicine.
 
+![Graphical Abstract](Graphical Abstract.png)
+
 More details, please refer to our paper:
 
 **3D Deep Learning from CT Scans Predicts Tumor Invasiveness of Subcentimeter Pulmonary Adenocarcinomas**. *[Cancer Research](http://cancerres.aacrjournals.org/content/early/2018/10/02/0008-5472.CAN-18-0696).* (DOI: 10.1158/0008-5472.CAN-18-0696)
