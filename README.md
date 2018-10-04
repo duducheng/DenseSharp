@@ -6,7 +6,7 @@ classify early-stage lung cancer from **CT** scans on **pathological** level. Th
 radiologists (2 senior and 2 junior) in our observer study, which indicates the potentials to facilitate
 precision medicine.
 
-![Graphical Abstract](GraphicalAbstract.png)
+![Graphical Abstract](Graphical Abstract.png)
 
 More details, please refer to our paper:
 
