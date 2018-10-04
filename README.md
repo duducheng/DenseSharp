@@ -1,14 +1,16 @@
-# DenseSharp Networks for multi-task learning classification and segmentation
-*DenseSharp* Networks are very parameter-efficient 3D DenseNet-based deep neural networks with multi-task
-learning the nodule classification labels and segmentation masks. Segmentation (top-down path) 
+# DenseSharp Networks 
+*DenseSharp* Networks are very parameter-efficient 3D DenseNet-based deep neural networks, with multi-task
+learning the nodule **classification** labels and **segmentation** masks. Segmentation (top-down path) 
 learning elegantly guides classification (bottom-top path) to learn better. In this study, our networks learn to 
 classify early-stage lung cancer from **CT** scans on **pathological** level. The deep learning models outperforms the 
 radiologists (2 senior and 2 junior) in our observer study, which indicates the potentials to facilitate
 precision medicine.
 
-More details, refer to our paper 
-*3D Deep Learning from CT Scans Predicts Tumor Invasiveness of Subcentimeter Pulmonary Adenocarcinomas*.
+More details, please refer to our paper:
 
+**3D Deep Learning from CT Scans Predicts Tumor Invasiveness of Subcentimeter Pulmonary Adenocarcinomas**. *[Cancer Research](http://cancerres.aacrjournals.org/content/early/2018/10/02/0008-5472.CAN-18-0696).* (DOI: 10.1158/0008-5472.CAN-18-0696)
+
+Wei Zhao<sup>†</sup>, Jiancheng Yang<sup>†</sup>, Yingli Sun, Cheng Li, Weilan Wu, Liang Jin, Zhiming Yang, Bingbing Ni, Pan Gao, Peijun Wang, Yanqing Hua and Ming Li (<sup>†</sup>indicates equal contribution.)
 
 # Code Structure
 * [`mylib/`](mylib/):
