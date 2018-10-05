@@ -10,9 +10,11 @@ precision medicine.
 
 More details, please refer to our paper:
 
-**3D Deep Learning from CT Scans Predicts Tumor Invasiveness of Subcentimeter Pulmonary Adenocarcinomas**. *[Cancer Research](http://cancerres.aacrjournals.org/content/early/2018/10/02/0008-5472.CAN-18-0696).* (DOI: 10.1158/0008-5472.CAN-18-0696)
+**3D Deep Learning from CT Scans Predicts Tumor Invasiveness of Subcentimeter Pulmonary Adenocarcinomas**
 
-Wei Zhao<sup>†</sup>, Jiancheng Yang<sup>†</sup>, Yingli Sun, Cheng Li, Weilan Wu, Liang Jin, Zhiming Yang, Bingbing Ni, Pan Gao, Peijun Wang, Yanqing Hua and Ming Li (<sup>†</sup>indicates equal contribution.)
+Wei Zhao<sup>†</sup>, Jiancheng Yang<sup>†</sup>, Yingli Sun, Cheng Li, Weilan Wu, Liang Jin, Zhiming Yang, Bingbing Ni, Pan Gao, Peijun Wang, Yanqing Hua and Ming Li (<sup>†</sup>indicates equal contribution)
+
+*[Cancer Research](http://cancerres.aacrjournals.org/content/early/2018/10/02/0008-5472.CAN-18-0696)* (DOI: 10.1158/0008-5472.CAN-18-0696)
 
 # Code Structure
 * [`mylib/`](mylib/):
