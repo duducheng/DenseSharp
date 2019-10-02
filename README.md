@@ -19,7 +19,7 @@ Wei Zhao<sup>†</sup>, Jiancheng Yang<sup>†</sup>, Yingli Sun, Cheng Li, Weil
 # Code Structure
 * [`mylib/`](mylib/):
     * [`dataloader/`](mylib/dataloader): PyTorch-like datasets and dataloaders for Keras.
-    * [`models/`](mylib/models): 3D *DenseSharp* and *DenseNet* models togethor with the losses and metrics.
+    * [`models/`](mylib/models): 3D *DenseSharp* and *DenseNet* models together with the losses and metrics.
     * [`utils/`](mylib/utils): plot and multi-processing utils.
 * [`explore.ipynb`](explore.ipynb): plots and basic views of networks.
 * [`train.py`](train.py): the training script.
